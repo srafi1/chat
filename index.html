@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>Chat</title>
+    <script type='text/javascript' src='node_modules/socket.io-client/socket.io.js'></script>
+    <script type='text/javascript' src='client.js'></script>
+    <style>
+      .chatbox {
+      background-color: #cccccc;
+      height: 80%;
+      width: 70%;
+      font-size: 18px;
+      text-align: left;
+      }
+      #chat {
+      margin: 20px;
+      height: 90%;
+      width: 90%;
+      }
+      #msg {
+      font-size: 18px;
+      width: 80%;
+      float: bottom;
+      }
+      #btn {
+      width: 15%;
+      font-size: 18px;
+      float: bottom;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1>Chat in Socket.io</h1>
+      <div class='chatbox'>
+	<div>
+	  <p id='chat'></p>
+	</div>
+	<div>
+	  <center>
+	    <form action='javascript:;' onsubmit=msgServer()>
+	      <input id='msg' type='text' autocomplete='off'></input>
+	      <input type='submit' id='btn' value='Send'></input>
+	    </form>
+	  </center>
+	</div>
+      </div>
+  </body>
+</html>
