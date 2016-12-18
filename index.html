@@ -13,8 +13,6 @@
       }
       #chat {
       margin: 20px;
-      height: 90%;
-      width: 90%;
       }
       #msg {
       font-size: 18px;
@@ -26,19 +24,25 @@
       font-size: 18px;
       float: bottom;
       }
+      .chatdiv {
+      overflow-y: scroll;
+      width: 100%;
+      height: 90%;
+      }
     </style>
   </head>
   <body>
     <center>
       <h1>Chat in Socket.io</h1>
       <div class='chatbox'>
-	<div>
+	<div class='chatdiv'>
 	  <p id='chat'></p>
 	</div>
+	<br>
 	<div>
 	  <center>
 	    <form action='javascript:;' onsubmit=msgServer()>
-	      <input id='msg' type='text' autocomplete='off'></input>
+	      <input id='msg' type='text' autocomplete='off' onfocus='scrollBottom()' autofocus></input>
 	      <input type='submit' id='btn' value='Send'></input>
 	    </form>
 	  </center>

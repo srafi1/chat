@@ -22,3 +22,8 @@ function msgServer() {
     if (s != '')
 	io.emit('msg', {user: userName, data: s});
 }
+
+function scrollBottom() {
+    var chatdiv = document.getElementByClassName('chatdiv')[0];
+    chatdiv.scrollTop = chatdiv.scrollHeight;
+}
