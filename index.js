@@ -10,10 +10,31 @@ app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
+var roomdata = {};
+var clients = {};
+
 io.on('connection', function(socket) {
+    
+    socket.on('joinRoom', function(room) {
+	console.log(socket.id + ' joined');
+	var num = room.roomnum;
+	if (!roomdata[num]) {
+	    roomdata[num] = [];
+	    console.log('Created room: ' + num);
+	} else {
+	    for (var msg in roomdata[num]) {
+		io.sockets.connected[socket.id].emit('sendMsg', roomdata[num][msg]);
+	    }
+	}
+	clients[socket.id] = num;
+    });
 
     socket.on('msg', function(msg) {
-	io.emit('sendMsg', msg);
+	roomdata[clients[socket.id]].push(msg);
+	for (var client in clients) {
+	    if (clients[client] == clients[socket.id])
+		io.sockets.connected[client].emit('sendMsg', msg);
+	}
     });
     
 });

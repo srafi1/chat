@@ -11,6 +11,13 @@ if (localStorage.userName) {
 }
 userName = localStorage.userName;
 
+var room;
+do {
+    room = prompt('Choose a chat room to connect to');
+} while (isNaN(room));
+room = parseInt(room);
+io.emit('joinRoom', {roomnum: room});
+
 io.on('sendMsg', function(msg) {
     chatlog += '<b>' + msg.user + '</b>: '+ msg.data + '<br>';
     document.getElementById('chat').innerHTML = chatlog;
@@ -24,6 +31,6 @@ function msgServer() {
 }
 
 function scrollBottom() {
-    var chatdiv = document.getElementByClassName('chatdiv')[0];
+    var chatdiv = document.getElementsByClassName('chatdiv')[0];
     chatdiv.scrollTop = chatdiv.scrollHeight;
 }
